@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,10 +50,10 @@ class _ProfileViewerPageState extends State<ProfileViewerPage> {
         });
         storeImage();
       } else {
-        showSnackBar(Text("No image selected"));
+        Fluttertoast.showToast(msg: "No image selected");
       }
     } else {
-      showSnackBar(Text("No image selected"));
+      Fluttertoast.showToast(msg: "No image selected");
     }
   }
 
@@ -64,7 +65,7 @@ class _ProfileViewerPageState extends State<ProfileViewerPage> {
 
     await sharedPreferences.setString("path", _selectedImage!.path);
 
-    showSnackBar(Text("Image saved"), behavior: SnackBarBehavior.floating);
+    Fluttertoast.showToast(msg: "Image saved");
   }
 
   Future<void> getImage() async {
